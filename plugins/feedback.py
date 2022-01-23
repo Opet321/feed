@@ -51,7 +51,7 @@ async def admin_messages(client: Client, message: Message):
         await message.delete()
 
 
-@Client.on_message(filters.all & filters.private)
+@Client.on_message(filters.all & filters.private & ~filters.me)
 async def all_messages(client: Client, message: Message):
     user_in_db = await users.find_one({'user': f'{message.from_user.id}'})
     ban_list = await bans.find_one({'user': f'{message.from_user.id}'})
