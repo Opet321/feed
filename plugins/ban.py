@@ -1,6 +1,5 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message
-from time import perf_counter
 from .utils import owner, bans
 
 

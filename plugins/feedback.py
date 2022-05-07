@@ -1,6 +1,5 @@
 from pyrogram import Client, filters
 from pyrogram.types import Message
-from time import perf_counter
 from .utils import owner, owner_username, get_message_id, users, messages, bans
 import asyncio
 
