@@ -1,0 +1,18 @@
+# SET BASE IMAGE OS
+FROM python:3.9-alpine
+
+# WORKDIR
+WORKDIR /app
+
+# COPY ALL
+COPY . ./
+
+# IGNORE PIP WARNING 
+ENV PIP_ROOT_USER_ACTION=ignore
+ENV PIP_DISABLE_PIP_VERSION_CHECK=on
+
+# INSTALL REQUIREMENTS
+RUN pip install -r requirements.txt
+
+# COMMAND TO RUN
+CMD ["python", "main.py"]
