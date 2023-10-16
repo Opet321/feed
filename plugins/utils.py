@@ -13,7 +13,6 @@ create = connect.database
 
 users = create.users
 messages = create.messages
-bans = create.bans
 
 
 async def _message_id(message_id):
