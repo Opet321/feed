@@ -36,7 +36,7 @@ async def _owner(client: Client, message: Message):
     else:
         message_id = await _message_id(message_id=last_msg['forward_id'])
         await message.copy(int(message_id['user_id']))
-        message = await message.reply_text(f"<b>Your message was delivered to {(message_id['user_id'])}</b>", reply_to_message_id=message.id)
+        message = await message.reply_text(f"<b>Your message was delivered to {(message_id['user_id'])}</b>", reply_to_message_id=message.id, disable_notification=True)
         await sleep(5)
         await message.delete()
 
