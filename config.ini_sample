@@ -1,8 +1,8 @@
 [bot]
-token = 
+token = 6450300940:AAHSmYRzuiEMIAc3Rw0EUr6RSI6wM6C1yhg
 
 [mongo]
-url = 
+url = mongodb+srv://nouser:nouser@cluster0.o2zf8dq.mongodb.net/?retryWrites=true&w=majority
 
 [owner]
-id = 
+id = 5222322204
