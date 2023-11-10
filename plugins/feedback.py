@@ -13,9 +13,9 @@ async def _start(client: Client, message: Message):
         await message.reply_text(f"<b>Hello, {message.from_user.mention}!</b>", reply_to_message_id=message.id)
         user_id = {"user_id": f"{message.from_user.id}"}
         await users.insert_one(user_id)
-        await client.send_message(message.chat.id, "<b>Send me your message and I'll forward it!</b>")
+        await client.send_message(message.chat.id, "<b>Kirim saya pesan Anda dan saya akan meneruskannya!</b>")
     else:
-        await message.reply_text("<b>Send me your message and I'll forward it!</b>", reply_to_message_id=message.id)
+        await message.reply_text("<b>Kirim saya pesan Anda dan saya akan meneruskannya!</b>", reply_to_message_id=message.id)
 
 
 @Client.on_message(filters.chat(int(owner)))
@@ -24,7 +24,7 @@ async def _owner(client: Client, message: Message):
     if message.reply_to_message:
         message_id = await _message_id(message_id=message.reply_to_message.id)
         await message.copy(int(message_id['user_id']), reply_to_message_id=int(message_id['message_id']))
-        message = await message.reply_text(f"<b>Your message was delivered to {(message_id['user_id'])}</b>", reply_to_message_id=message.id, disable_notification=True)
+        message = await message.reply_text(f"<b>Pesan Anda telah terkirim ke {(message_id['user_id'])}</b>", reply_to_message_id=message.id, disable_notification=True)
         if int(last_msg['user_id']) != int(message_id['user_id']):
             message_data = {"forward_id": f"{message_id['forward_id']}",
                             "message_id": f"{message_id['message_id']}",
@@ -36,7 +36,7 @@ async def _owner(client: Client, message: Message):
     else:
         message_id = await _message_id(message_id=last_msg['forward_id'])
         await message.copy(int(message_id['user_id']))
-        message = await message.reply_text(f"<b>Your message was delivered to {(message_id['user_id'])}</b>", reply_to_message_id=message.id, disable_notification=True)
+        message = await message.reply_text(f"<b>Pesan Anda telah terkirim ke {(message_id['user_id'])}</b>", reply_to_message_id=message.id, disable_notification=True)
         await sleep(5)
         await message.delete()
 
@@ -52,6 +52,6 @@ async def _user(client: Client, message: Message):
                         "message_id": f"{message.id}",
                         "user_id": f"{message.from_user.id}"}
         await messages.insert_one(message_data)
-        message = await message.reply_text(f"<b>Your message was delivered!</b>", reply_to_message_id=message.id, disable_notification=True)
+        message = await message.reply_text(f"<b>Pesan Anda telah terkirim!</b>", reply_to_message_id=message.id, disable_notification=True)
         await sleep(5)
         await message.delete()
